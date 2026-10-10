@@ -2,10 +2,17 @@
 @plugin "daisyui";
 @import "@heroui/styles"; 
 
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
 .price-ticker-track {
   display: flex;
   width: max-content;
-  animation: price-ticker-scroll 20s linear infinite;
+  animation: price-ticker-scroll 30s linear infinite;
   will-change: transform;
 }
 

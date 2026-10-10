@@ -9,7 +9,7 @@ const Navbar = async () => {
   return (
     <div className= " sticky top-0 z-50 bg-white shadow-md">
       <div className="flex justify-between items-center py-2 px-8 max-w-7xl mx-auto">
-        <div className="flex items-center  font-bold text-2xl gap-2  py-1 px-1">
+        <Link href="/" className="flex items-center  font-bold text-2xl gap-2  py-1 px-1">
           <Image
             src="/logo-icon.png"
             alt="Logo"
@@ -25,7 +25,7 @@ const Navbar = async () => {
               })}
             </p>
           </div>
-        </div>
+        </Link>
         <div className="flex gap-2 items-center">
           <Link href="/sign-in"
            className="btn px-2 py-2 ">সাইন ইন </Link>

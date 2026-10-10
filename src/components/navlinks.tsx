@@ -10,7 +10,7 @@ type Category = {
 
 const NavLinks = async () => {
   const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories",
+    `${process.env.API_BASE_URL}/categories`,
     { cache: "no-store" }
   );
 

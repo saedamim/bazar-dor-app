@@ -37,7 +37,7 @@ const getUnit = (unit: string): string => {
 
 const Marquee = async (): Promise<React.ReactElement> => {
   const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/products",
+    `${process.env.API_BASE_URL}/products`,
     { cache: "no-store" },
   );
   if (!res.ok) {

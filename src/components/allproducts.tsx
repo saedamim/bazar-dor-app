@@ -26,7 +26,7 @@ async function AllProducts() {
     : data.data ?? [];
 
   return (
-    <section id="all-products" className=" max-w-7xl mx-auto my-10">
+    <section id="all-products" className=" max-w-7xl mx-auto my-10 scroll-mt-24">
       <h2 className="mb-5 text-xl font-bold text-gray-800">
         সব পণ্য
       </h2>

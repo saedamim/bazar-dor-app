@@ -39,12 +39,12 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-green-50 items-center justify-center px-4 py-10">
+    <div className="flex min-h-screen bg-green-50 items-center mt-5 justify-center px-4 py-10">
       <Form
         className="w-full  px-8 py-10  max-w-96"
         onSubmit={onSubmit}
       >
-        <div className="mb-6 flex flex-col justify-center">
+        <div className="mb-6 flex  items-center  flex-col justify-center">
           <Fieldset.Legend>
             <h2 className="text-xl font-bold">অ্যাকাউন্ট তৈরি করুন</h2>
           </Fieldset.Legend>
@@ -68,6 +68,9 @@ const SignUpPage = () => {
               return null;
             }}
           >
+            <Label>ImageURl</Label>
+            <Input  name="image" type="url" className=" input" placeholder="Image"/>
+
             <Label> নাম</Label>
             <Input placeholder="যেমন: রহিম উদ্দিন" />
             <FieldError />
@@ -138,17 +141,10 @@ const SignUpPage = () => {
         </FieldGroup>
 
         <Fieldset.Actions>
-          <Button type="submit">অ্যাকাউন্ট তৈরি করুন</Button>
-          <Button
-            type="reset"
-            variant="secondary"
-            onPress={() => {
-              setPassword("");
-              setConfirmPassword("");
-            }}
-          >
-            মুছে ফেলুন
+          <Button className="bg-green-600 text-white items-center" type="submit">
+            অ্যাকাউন্ট তৈরি করুন
           </Button>
+         
         </Fieldset.Actions>
       </Form>
     </div>
