@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface Product {
   id: string | number;
   nameBn: string;
@@ -13,9 +15,7 @@ export default async function ProductDetails({
 }) {
   const { id } = await params;
 
-  const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products/${id}`
-  );
+  const res = await fetch(`${process.env.API_BASE_URL}/products/${id}`);
 
   if (!res.ok) {
     return <p>Product পাওয়া যায়নি।</p>;
@@ -26,10 +26,12 @@ export default async function ProductDetails({
   return (
     <main className="mx-auto max-w-5xl p-6">
       {product.image && (
-        <img
+        <Image
           src={product.image}
           alt={product.nameBn}
           className="mb-4 h-64 w-full rounded-xl object-contain"
+          width={500}
+          height={500}
         />
       )}
 

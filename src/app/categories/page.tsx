@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 
 interface Category {
@@ -9,10 +8,9 @@ interface Category {
 }
 
 async function getCategories(): Promise<Category[]> {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/categories",
-    { cache: "no-store" }
-  );
+  const res = await fetch(`${process.env.API_BASE_URL}/products/categories`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch categories");

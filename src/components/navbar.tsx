@@ -7,7 +7,7 @@ const Navbar = async () => {
   await connection()
 
   return (
-    <div className="bg-white shadow-md">
+    <div className= " sticky top-0 z-50 bg-white shadow-md">
       <div className="flex justify-between items-center py-2 px-8 max-w-7xl mx-auto">
         <div className="flex items-center  font-bold text-2xl gap-2  py-1 px-1">
           <Image

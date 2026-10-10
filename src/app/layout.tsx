@@ -7,7 +7,6 @@ import Footer from "@/components/footer";
 import Marquee from "@/components/marquee";
 import "./globals.css";
 
-
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
 });
@@ -29,8 +28,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           <Marquee />
         </Suspense>
-       
-    
         {children}
         <Footer />
       </body>
