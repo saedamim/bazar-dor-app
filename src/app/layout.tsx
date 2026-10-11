@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import Footer from "@/components/footer";
 import Marquee from "@/components/marquee";
 import "./globals.css";
+import { Toast } from "@heroui/react";
 
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           <Marquee />
         </Suspense>
+        <Toast.Provider />
         {children}
         <Footer />
       </body>
