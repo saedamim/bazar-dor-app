@@ -1,5 +1,6 @@
 import { GiShoppingCart } from "react-icons/gi";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
+import { connection } from "next/server";
 
 interface Product {
   id: string | number;
@@ -36,6 +37,7 @@ const getUnit = (unit: string): string => {
 };
 
 const Marquee = async (): Promise<React.ReactElement> => {
+  await connection();
   const res = await fetch(
     `${process.env.API_BASE_URL}/products`,
     { cache: "no-store" },

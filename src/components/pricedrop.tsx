@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaCaretUp } from "react-icons/fa";
 import { IoCaretDown } from "react-icons/io5";
 
@@ -41,7 +42,9 @@ const products = (Array.isArray(result) ? result : (result.data ?? []))
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {products.map((p) => (
-          <div key={p.id} className="rounded-xl shadow bg-white p-5">
+          <Link
+            key={p.id}
+            href={`/product/${p.id}`} className="rounded-xl shadow bg-white p-5">
             <div className="flex items-center gap-3">
               <span className="text-2xl">{p.image}</span>
               <div>
@@ -78,7 +81,7 @@ const products = (Array.isArray(result) ? result : (result.data ?? []))
   )}
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

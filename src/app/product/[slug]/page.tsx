@@ -1,6 +1,8 @@
 import Loader from "@/components/loader";
 import PriceCompare from "@/components/pricecompare";
-import { notFound } from "next/navigation";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { notFound, redirect } from "next/navigation";
 import { Suspense } from "react";
 
 type Market = {
@@ -40,6 +42,13 @@ async function ProductDetails({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    redirect(`/sign-in`);
+  }
   const productsRes = await fetch(
     `${process.env.API_BASE_URL}/products/${slug}`,
     {
