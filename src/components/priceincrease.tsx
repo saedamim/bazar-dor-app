@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaCaretUp } from "react-icons/fa";
 
 type Product = {
@@ -38,7 +39,11 @@ async function PriceIncreased() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {products.map((p: Product) => (
-          <div key={p.id} className="rounded-xl  bg-white p-5 shadow-sm">
+          <Link
+            key={p.id}
+            href={`/product/${p.id}`}
+            className="rounded-xl  bg-white p-5 shadow-sm"
+          >
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-2xl">
                 {p.image}
@@ -77,7 +82,7 @@ async function PriceIncreased() {
                 {p.change?.pct ?? 0}%
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

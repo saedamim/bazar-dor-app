@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaCaretUp } from "react-icons/fa";
 import { IoCaretDown } from "react-icons/io5";
 
@@ -32,7 +33,11 @@ async function AllProducts() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {products.map((p) => (
-          <div key={p.id} className="rounded-xl  bg-white p-5 shadow-sm">
+          <Link
+            key={p.id}
+            href={`/product/${p.id}`}
+            className="rounded-xl  bg-white p-5 shadow-sm"
+          >
             <div className="flex items-center gap-3">
               <span className="text-2xl">{p.image}</span>
               <div>
@@ -66,7 +71,7 @@ async function AllProducts() {
                 )}
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
