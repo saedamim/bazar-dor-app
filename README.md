@@ -1,85 +1,34 @@
-# 🛒 Bazador – Daily Market Price Tracker
+# 🛒 বাজার দর (BazarDor)
 
-**Bazador** is a modern web application designed to help users stay updated with daily market prices of essential products in Bangladesh.
+### Daily Market Price Tracker for Bangladesh
 
-Users can explore product categories, check current prices, compare previous prices, and track price increases or decreases through a simple, responsive interface.
-
-## 🚀 Features
-
-- 🛒 **Product Listings** – Browse essential market products.
-- 📂 **Category Filtering** – Explore products by category.
-- 📈 **Price Increase Tracking** – See which products have become more expensive.
-- 📉 **Price Decrease Tracking** – Discover products with reduced prices.
-- 📊 **Price Comparison** – Compare today's prices with yesterday, last week, and last month.
-- 🔍 **Product Details** – View individual product information and price history.
-- 🔐 **Authentication** – Sign-in and sign-up functionality with protected routes.
-- 📱 **Responsive Design** – Optimized for mobile, tablet, and desktop devices.
+**BazarDor** is a modern, user-friendly web application that helps people in Bangladesh stay informed about daily essential product prices. Users can explore product categories, monitor price changes, and compare current prices with previous days, weeks, and months to make smarter shopping decisions.
 
 ## 🛠️ Technologies Used
 
-- **Next.js** – React framework
-- **React.js** – User interface
-- **TypeScript** – Type-safe development
-- **Tailwind CSS** – Styling
-- **Better Auth** – Authentication
-- **Lucide React** – Icons
+- **Next.js** – React framework for building modern web applications
+- **React.js** – Component-based user interfaces
+- **TypeScript** – Type-safe JavaScript development
+- **Tailwind CSS** – Responsive and customizable styling
+- **Better Auth** – Secure user authentication
+- **Lucide React** – Modern and lightweight icons
 
-## 📦 Installation
+## ✨ Key Features
 
-### 1. Clone the Repository
+### 1. 🛍️ Daily Market Prices
+View updated prices of essential products such as rice, vegetables, fish, meat, and other daily necessities.
 
-```bash
-git clone https://github.com/YOUR_USERNAME/bazador.git
-```
+### 2. 📂 Product Categories
+Browse products by category to quickly find specific items and their current market prices.
 
-### 2. Navigate to the Project
+### 3. 📈 Price Increase & Decrease Tracking
+Easily identify products whose prices have increased or decreased with clear visual indicators.
 
-```bash
-cd bazador
-```
+### 4. 📊 Product Details & Price Comparison
+Explore individual product details and compare today's prices with yesterday, last week, and last month.
 
-### 3. Install Dependencies
-
-```bash
-npm install
-```
-
-### 4. Configure Environment Variables
-
-Create a `.env.local` file and configure the required environment variables according to your authentication and backend setup.
+### 5. 🔐 User Authentication & Protected Routes
+Secure sign-up and sign-in functionality using Better Auth, with protected access to user profiles and selected pages.
 
 
-
-## 📄 Main Pages
-
-| Page | Description |
-|---|---|
-| Home | Displays daily market prices and highlights |
-| Categories | Browse products by category |
-| Product Details | View product prices and comparisons |
-| Sign In | User authentication |
-| Sign Up | Create a new account |
-| Profile | Manage user information |
-
-## 🎯 Project Purpose
-
-The main goal of Bazador is to make daily market price information easily accessible to people in Bangladesh.
-
-By comparing product prices over time, users can better understand market trends and make informed purchasing decisions.
-
-## 🔮 Future Improvements
-
-- Search and advanced filtering
-- Historical price charts
-- User favorite products
-- Price change notifications
-- Location-based market prices
-- Admin dashboard for managing product information
-
-## 👨‍💻 Author
-
-Developed as a web development project using Next.js, React, and TypeScript.
-
-## 📜 License
-
-This project is intended for educational and development purposes.
+**বাজার দর (BazarDor)** – Know the Price, Shop Smarter. 🇧🇩
