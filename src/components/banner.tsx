@@ -29,7 +29,7 @@ const Banner = async () => {
         </p>
 
         <Link
-          href="#allproducts"
+          href="#all-products"
           className="btn mt-6 rounded-xl bg-green-700 px-4 py-2 text-white"
         >
           সব পণ্য দেখুন

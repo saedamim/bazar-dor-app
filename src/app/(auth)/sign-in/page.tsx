@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 
-import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { Button, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { signIn } from '@/lib/auth-client';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -13,12 +13,12 @@ const SignIn = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const data: Record<string, string> = {};
-        // Convert FormData to plain object
+       
         formData.forEach((value, key) => {
             data[key] = value.toString();
         });
 
-        const { data: signInData, error } = await signIn.email({
+        const { error } = await signIn.email({
             email: data.email,
             password: data.password,
             rememberMe: true,
@@ -27,10 +27,10 @@ const SignIn = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#f2f7f3] px-4 py-8 font-bengali sm:px-6">
+        <div className="min-h-screen bg-white px-4 py-8 font-bengali sm:px-6">
             <Form className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center" onSubmit={onSubmit}>
                
-                <div className="mb-5 w-full max-w-[380px] text-center">
+                <div className="mb-5 w-full max-w-95 text-center">
                     <h1 className="text-[24px] font-bold leading-tight text-gray-900 sm:text-[26px]">
                         সাইন ইন
                     </h1>
@@ -39,7 +39,7 @@ const SignIn = () => {
                         আপনার অ্যাকাউন্টে প্রবেশ করুন ও চালিয়ে যান
                     </p>
                 </div>
-                <div className="flex w-full flex-col max-w-[380px] rounded-xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
+                <div className="flex w-full flex-col max-w-95 rounded-xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
                     <TextField
                        
                         name="email"
@@ -148,7 +148,7 @@ const SignIn = () => {
                         সাইন ইন
                     </Button>
 
-                    {/* Divider */}
+                   
                     <div className="my-5 flex items-center gap-3">
                         <div className="h-px flex-1 bg-gray-200" />
 
@@ -184,12 +184,12 @@ const SignIn = () => {
                     
                     <p className="mt-5 text-center text-[11px] text-gray-500">
                         অ্যাকাউন্ট নেই?{" "}
-                        <a
-                            href="/signup"
+                        <Link
+                            href="/sign-up"
                             className="font-semibold text-green-700 hover:text-green-800 hover:underline"
                         >
                             সাইন আপ করুন
-                        </a>
+                        </Link>
                     </p>
                 </div>
         

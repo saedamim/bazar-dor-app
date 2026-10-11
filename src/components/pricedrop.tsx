@@ -1,6 +1,7 @@
 import { FaCaretUp } from "react-icons/fa";
 import { IoCaretDown } from "react-icons/io5";
 
+async function PriceDrop() {
 type Product = {
   id: number;
   nameBn: string;
@@ -13,30 +14,24 @@ type Product = {
     pct: number;
   };
 };
+const res = await fetch(
+  `${process.env.API_BASE_URL}/products`,
+  { cache: "no-store" },
+);
 
-async function PriceDrop() {
-  const res = await fetch(
-    `${process.env.API_BASE_URL}/products`,
-    { cache: "no-store" }
-  );
+if (!res.ok) {
+  throw new Error("Failed to fetch products");
+}
 
-  const data = await res.json();
+const result = (await res.json()) as Product[] | { data?: Product[] };
 
-  const wantedProducts = [
-  "কাঁচামরিচ",
-  "রসুন",
-  "আলু",
-  "কাতলা মাছ",
-  "হাঁসের মাংস",
-  "খাসির মাংস",
-];
-
-const products: Product[] = (
-  Array.isArray(data) ? data : data.data ?? []
-)
-  .filter((p: Product) =>
-    wantedProducts.includes(p.nameBn)
-  );
+const products = (Array.isArray(result) ? result : (result.data ?? []))
+  .filter((p: Product) => p.change?.dir === "down")
+  .sort(
+    (a: Product, b: Product) =>
+      Number(a.change?.pct ?? 0) - Number(b.change?.pct ?? 0),
+  )
+  .slice(0, 6);
 
   return (
     <section className=" max-w-7xl mx-auto my-10">

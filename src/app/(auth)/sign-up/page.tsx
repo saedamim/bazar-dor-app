@@ -9,6 +9,7 @@ import {
   Input,
   Label,
   TextField,
+  toast,
 } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import { FcGoogle } from "react-icons/fc";
@@ -16,10 +17,6 @@ import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const toast = {
-  error: (message: string) => window.alert(message),
-  success: (message: string) => window.alert(message),
-};
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -36,39 +33,40 @@ const SignUpPage = () => {
 
     const name = String(formData.get("name") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
+    const image = String(formData.get("image") ?? "").trim();
 
     if (!name || name.length < 3) {
-      toast.error("নাম কমপক্ষে ৩ অক্ষরের হতে হবে");
+      toast.danger("নাম কমপক্ষে ৩ অক্ষরের হতে হবে");
       return;
     }
 
     if (password.length < 8) {
-      toast.error("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে");
+      toast.danger("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে");
       return;
     }
 
     if (!/[A-Z]/.test(password)) {
-      toast.error("অন্তত একটি বড় হাতের অক্ষর দিন");
+      toast.danger("অন্তত একটি বড় হাতের অক্ষর দিন");
       return;
     }
 
     if (!/[a-z]/.test(password)) {
-      toast.error("অন্তত একটি ছোট হাতের অক্ষর দিন");
+      toast.danger("অন্তত একটি ছোট হাতের অক্ষর দিন");
       return;
     }
 
     if (!/[0-9]/.test(password)) {
-      toast.error("অন্তত একটি সংখ্যা দিন");
+      toast.danger("অন্তত একটি সংখ্যা দিন");
       return;
     }
 
     if (!/[^A-Za-z0-9]/.test(password)) {
-      toast.error("অন্তত একটি বিশেষ চিহ্ন দিন");
+      toast.danger("অন্তত একটি বিশেষ চিহ্ন দিন");
       return;
     }
 
     if (password !== confirmPassword) {
-      toast.error("দুটি পাসওয়ার্ড মিলছে না");
+      toast.danger("দুটি পাসওয়ার্ড মিলছে না");
       return;
     }
 
@@ -78,28 +76,26 @@ const SignUpPage = () => {
       const { error } = await authClient.signUp.email({
         name,
         email,
+        image,
         password,
-        callbackURL: "/",
-        // autoSignIn: false,
+        callbackURL: `/sign-in`,
       });
 
       if (error) {
-        toast.error(error.message || "রেজিস্ট্রেশন ব্যর্থ হয়েছে");
+        toast.danger(error.message || "রেজিস্ট্রেশন ব্যর্থ হয়েছে");
         return;
       }
 
-      // Better Auth-এর default signup data-তে image পাঠানো হয় না।
-      // Image URL প্রয়োজন হলে signup-এর পরে profile update করতে হবে।
       if (image.trim()) {
         toast.success("অ্যাকাউন্ট তৈরি হয়েছে। প্রোফাইল ছবিটি পরে সেট করতে পারবেন।");
       } else {
         toast.success("অ্যাকাউন্ট তৈরি হয়েছে! এবার সাইন ইন করুন।");
       }
 
-      router.push("/login");
+      router.push("/");
       router.refresh();
     } catch {
-      toast.error("কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+      toast.danger("কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
     } finally {
       setIsLoading(false);
     }
@@ -112,7 +108,7 @@ const SignUpPage = () => {
         callbackURL: "/",
       });
     } catch {
-      toast.error(`${provider === "google" ? "Google" : "GitHub"} দিয়ে সাইন ইন করা যায়নি`);
+      toast.danger(`${provider === "google" ? "Google" : "GitHub"} দিয়ে সাইন ইন করা যায়নি`);
     }
   };
 
@@ -285,7 +281,7 @@ const SignUpPage = () => {
         </div>
       </Form>
 
-      <div className="mt-2 text-center">
+      <div className="mt-1 text-center">
         <Link
           href="/"
           className="text-[10px] text-gray-400 hover:text-gray-600"

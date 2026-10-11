@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 type Product = {
   id: number;
   nameBn: string;
+  slug:string;
   categoryNameBn?: string;
   categoryIcon?: string;
   today: number;
@@ -77,8 +79,9 @@ export default function ProductSection({
             const direction = product.change?.dir;
 
             return (
-              <div
+              <Link
                 key={product.id}
+                href={`/product/${product.id}`}
                 className="rounded-2xl border border-gray-100 bg-white p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="mb-5 flex items-center gap-3">
@@ -127,7 +130,7 @@ export default function ProductSection({
                     {banglaNumber(change)}%
                   </span>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

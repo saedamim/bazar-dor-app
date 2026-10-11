@@ -29,7 +29,7 @@ async function CategoryContent({ slug }: { slug: string }) {
   if (products.length === 0) {
     notFound();
   }
-
+  console.log(products);
   return <ProductSection products={products} />;
 }
 
