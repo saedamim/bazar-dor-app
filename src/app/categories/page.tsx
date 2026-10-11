@@ -1,4 +1,6 @@
+import Loader from "@/components/loader";
 import Link from "next/link";
+import { Suspense } from "react";
 
 interface Category {
   id: string;
@@ -8,7 +10,7 @@ interface Category {
 }
 
 async function getCategories(): Promise<Category[]> {
-  const res = await fetch(`${process.env.API_BASE_URL}/products/categories`, {
+  const res = await fetch(`${process.env.API_BASE_URL}/categories`, {
     cache: "no-store",
   });
 
@@ -19,9 +21,8 @@ async function getCategories(): Promise<Category[]> {
   return res.json();
 }
 
-export default async function CategoriesPage() {
+async function Categories() {
   const categories = await getCategories();
-
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-12 md:px-8">
       <div className="mx-auto max-w-7xl">
@@ -72,5 +73,12 @@ export default async function CategoriesPage() {
         </div>
       </div>
     </main>
+  );
+}
+export default async function CategoriesPage() {
+  return (
+    <Suspense fallback={<Loader className="min-h-screen" message="ক্যাটাগরি লোড হচ্ছে..."/>}>
+      <Categories />
+    </Suspense>
   );
 }

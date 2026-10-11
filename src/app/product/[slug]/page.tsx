@@ -1,16 +1,20 @@
+import Loader from "@/components/loader";
+import PriceCompare from "@/components/pricecompare";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-interface Market {
+type Market = {
   market: string;
   division: string;
   min: number;
   max: number;
-}
+};
 
-interface Product {
+type Product = {
   id: number;
   slug: string;
   nameBn: string;
+  category: string;
   categoryNameBn: string;
   categoryIcon: string;
   image: string;
@@ -24,62 +28,39 @@ interface Product {
     pct: number;
   };
   markets: Market[];
-}
+};
 
-type Props = {
+type ProductPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-async function ProductDetails({ params }: Props) {
+async function ProductDetails({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-
-  const res = await fetch(
-    `${process.env.API_BASE_URL}/products/${encodeURIComponent(slug)}`,
-    { cache: "no-store" },
+  const productsRes = await fetch(
+    `${process.env.API_BASE_URL}/products/${slug}`,
+    {
+      cache: "no-store",
+    },
   );
-   console.log(res)
-  if (!res.ok) {
-    return <p className="p-5">পণ্যের তথ্য পাওয়া যায়নি।</p>;
+
+  if (!productsRes.ok) {
+    throw new Error("Failed to fetch products");
   }
 
-  const product = (await res.json()) as Product;
-  const markets = product.markets ?? [];
+  const product = await productsRes.json();
 
-  const minPrice =
-    markets.length > 0 ? Math.min(...markets.map((m) => m.min)) : 0;
-
-  const averagePrice =
-    markets.length > 0
-      ? markets.reduce(
-          (sum, market) => sum + (market.min + market.max) / 2,
-          0,
-        ) / markets.length
-      : 0;
-
-  return (
-    <div className="rounded-2xl p-5 shadow">
-      <p className="text-sm">{product.nameBn}</p>
-
-      <p className="mt-2 text-2xl font-bold">
-        {averagePrice.toLocaleString("bn-BD", {
-          maximumFractionDigits: 2,
-        })}{" "}
-        <span className="text-base font-normal">টাকা</span>
-      </p>
-
-      <p className="mt-2 text-xs text-gray-500">
-        সর্বনিম্ন {minPrice.toLocaleString("bn-BD")} টাকা •{" "}
-        {product.categoryNameBn}
-      </p>
-    </div>
-  );
+  return <PriceCompare product={product} />;
 }
 
-export default function ProductDetailsPage({ params }: Props) {
+export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <Suspense
       fallback={
-        <p className="p-5 text-center">পণ্যের তথ্য লোড হচ্ছে...</p>
+        <Loader className="min-h-screen" message="ক্যাটাগরি লোড হচ্ছে..." />
       }
     >
       <ProductDetails params={params} />

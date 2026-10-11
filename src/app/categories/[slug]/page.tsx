@@ -9,12 +9,13 @@ type Props = {
 
 export const instant = false;
 
-async function CategoryContent({ slug }: { slug: string }) {
+
+async function CategoryContent({params}:Props){
+  const {slug} =await params;
   const res = await fetch(
-    `https://api.abcz.workers.dev/api/bazardor/products?category=${encodeURIComponent(slug)}`,
+    `${process.env.API_BASE_URL}/products?category=${encodeURIComponent(slug)}`,
     { cache: "no-store" }
   );
-
   if (!res.ok) {
     throw new Error("Failed to fetch products");
   }
@@ -34,11 +35,12 @@ async function CategoryContent({ slug }: { slug: string }) {
 }
 
 export default async function CategoryPage({ params }: Props) {
-  const { slug } = await params;
+
 
   return (
     <Suspense fallback={<Loader />}>
-      <CategoryContent slug={slug} />
+      <CategoryContent params={params} />
+      
     </Suspense>
   );
 }
