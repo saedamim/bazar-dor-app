@@ -272,7 +272,7 @@ const SignUpPage = () => {
           <p className="mt-5 text-center text-[11px] text-gray-500">
             ইতিমধ্যে অ্যাকাউন্ট আছে?{" "}
             <Link
-              href="/login"
+              href="/sign-in"
               className="font-semibold text-green-700 hover:text-green-800 hover:underline"
             >
               সাইন ইন করুন
